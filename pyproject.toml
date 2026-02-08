@@ -1,0 +1,26 @@
+[project]
+name = "autodocstring-tool"  # Your tool's name
+version = "0.1.0"
+description = "Automated Python docstring generator and enforcer"
+requires-python = ">=3.9"
+dependencies = [
+    "streamlit",
+    "pandas",
+    "pydocstyle",
+    # Add any other deps from your project (e.g., "ast" if needed)
+]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.autodocstring]  # Custom section for your tool
+style = "Google"       # Default: Google, NumPy, or reST
+min-coverage = 80.0    # Fail if below this %
+fail-on-missing-sections = true
+ignore-dirs = ["tests", "__pycache__", ".git", ".venv"]
+
+[tool.pydocstyle]
+convention = "google"
+add-ignore = "D100,D104,D107,D203,D212"  # Ignore common issues (adjust as needed)
+match-dir = "^src$"  # Only check src/ dir

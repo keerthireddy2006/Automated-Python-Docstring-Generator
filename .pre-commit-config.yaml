@@ -1,0 +1,36 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.6.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+
+  - repo: https://github.com/psf/black
+    rev: 24.8.0
+    hooks:
+      - id: black
+
+  - repo: https://github.com/PyCQA/pydocstyle
+    rev: 6.3.0
+    hooks:
+      - id: pydocstyle
+        exclude: ^(src/|app.py|main.py)     # ← skip src, app, main
+        args: [--convention=google]
+
+  - repo: https://github.com/econchick/interrogate
+    rev: 1.7.0
+    hooks:
+      - id: interrogate
+        args: [--fail-under=80, --verbose]
+        exclude: ^(src/|app.py|main.py)     # ← skip src, app, main
+
+  - repo: local
+    hooks:
+      - id: custom-docstring-check
+        name: Custom docstring coverage (per file)
+        entry: python -m src.cli
+        language: python
+        types: [python]
+        pass_filenames: true
+        args: [--min-coverage=80, --verbose]

@@ -9,10 +9,7 @@ def main():
         description="Automated Python Docstring Generator (CLI)"
     )
 
-    parser.add_argument(
-        "path",
-        help="Path to the Python file to analyze"
-    )
+    parser.add_argument("path", help="Path to the Python file to analyze")
 
     args = parser.parse_args()
     parsed_data = parse_file(args.path)
@@ -42,7 +39,6 @@ def main():
     print("-" * 26)
     for key, value in report.items():
         print(f"{key:<25}: {value}")
-
 
 
 if __name__ == "__main__":

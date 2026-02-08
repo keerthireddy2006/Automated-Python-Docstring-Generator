@@ -1,43 +1,70 @@
+from src.compliance import analyze_docstring
+
+
 def coverage_report(parsed_data):
-    functions = parsed_data.get("functions", [])
-    classes = parsed_data.get("classes", [])
+    functions = parsed_data["functions"]
+    classes = parsed_data["classes"]
+    methods = [m for c in classes for m in c["methods"]]
+    all_items = functions + methods
+    missing = {"Parameters": 0, "Returns": 0, "Raises": 0, "Yields": 0, "Attributes": 0}
+    compliant = 0
+    # ✅ NEW: collect non-compliant details
+    non_compliant_items = []
 
-    total_functions = len(functions)
+    for item in all_items:
+        result = analyze_docstring(item)
+
+        if result["pep257_compliant"]:
+            compliant += 1
+        else:
+            non_compliant_items.append(
+                {
+                    "Name": (
+                        item["name"]
+                        if not item.get("class")
+                        else f"{item['class']}.{item['name']}"
+                    ),
+                    "Type": "Method" if item.get("class") else "Function",
+                    "Missing Sections": ", ".join(result["missing_sections"]) or "None",
+                    "Formatting Issues": ", ".join(result.get("formatting_issues", []))
+                    or "None",
+                }
+            )
+
+        for sec in result["missing_sections"]:
+            missing[sec] += 1
+
+    total = len(all_items)
+    documented = sum(i["has_docstring"] for i in all_items)
+    # ---------- TYPE-WISE COUNTS ----------
     documented_functions = sum(f["has_docstring"] for f in functions)
-
-    total_methods = sum(len(cls["methods"]) for cls in classes)
-    documented_methods = sum(
-        m["has_docstring"]
-        for cls in classes
-        for m in cls["methods"]
-    )
-
-    total_classes = len(classes)
-    documented_classes = sum(cls["has_docstring"] for cls in classes)
-
-    total_items = total_functions + total_methods
-    documented_items = documented_functions + documented_methods
-    missing_items = total_items - documented_items
-
+    documented_methods = sum(m["has_docstring"] for m in methods)
+    documented_classes = sum(c["has_docstring"] for c in classes)
     return {
-        # Overall
-        "Total Functions & Methods": total_items,
-        "Documented": documented_items,
-        "Missing Docstrings": missing_items,
-        "Coverage (%)": (documented_items / total_items * 100) if total_items else 0,
-
-        # Functions
-        "Total Functions": total_functions,
-        "Documented Functions": documented_functions,
-        "Function Coverage (%)": (documented_functions / total_functions * 100) if total_functions else 0,
-
-        # Methods
-        "Total Methods": total_methods,
-        "Documented Methods": documented_methods,
-        "Method Coverage (%)": (documented_methods / total_methods * 100) if total_methods else 0,
-
-        # Classes
-        "Total Classes": total_classes,
-        "Documented Classes": documented_classes,
-        "Class Coverage (%)": (documented_classes / total_classes * 100) if total_classes else 0
+        # ---------- COUNTS ----------
+        "Functions": len(functions),
+        "Classes": len(classes),
+        "Methods": len(methods),
+        "Total": total,
+        # ---------- OVERALL COVERAGE ----------
+        "Documented": documented,
+        "Missing": total - documented,
+        "Coverage (%)": (documented / total * 100) if total else 0,
+        # ---------- TYPE-WISE COVERAGE ----------
+        "Function Coverage (%)": (
+            documented_functions / len(functions) * 100 if functions else 0
+        ),
+        "Method Coverage (%)": (
+            documented_methods / len(methods) * 100 if methods else 0
+        ),
+        "Class Coverage (%)": (
+            documented_classes / len(classes) * 100 if classes else 0
+        ),
+        # ---------- COMPLIANCE ----------
+        "PEP-257 Compliant": compliant,
+        "PEP-257 Compliance (%)": (compliant / total * 100) if total else 0,
+        # ---------- MISSING SECTIONS ----------
+        **{f"Missing {k}": v for k, v in missing.items()},
+        # ---------- ✅ NEW ADDITION ----------
+        "Non-Compliant Items": non_compliant_items,
     }

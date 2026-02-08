@@ -1,0 +1,29 @@
+name: CI - Docstring Enforcement
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -e . pre-commit pydocstyle interrogate pandas streamlit  # Your deps
+
+      - name: Run pre-commit hooks
+        run: pre-commit run --all-files
+
+      - name: Custom docstring coverage check
+        run: python -m src.cli src --min-coverage=80 --verbose
