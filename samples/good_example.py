@@ -45,4 +45,5 @@ class Counter:
         return self.count
 
 
+# Presentation demo comment
 # Added comment for demo
