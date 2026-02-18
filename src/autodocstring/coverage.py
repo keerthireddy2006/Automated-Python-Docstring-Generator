@@ -1,4 +1,4 @@
-from src.compliance import analyze_docstring
+from autodocstring.compliance import analyze_docstring
 
 
 def coverage_report(parsed_data):

@@ -1,5 +1,5 @@
 import ast
-from src.llm_generator import generate_docstring_llm
+from autodocstring.llm_generator import generate_docstring_llm
 
 
 class DocstringInjector(ast.NodeTransformer):

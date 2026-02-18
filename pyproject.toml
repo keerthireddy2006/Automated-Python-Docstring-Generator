@@ -24,3 +24,6 @@ ignore-dirs = ["tests", "__pycache__", ".git", ".venv"]
 convention = "google"
 add-ignore = "D100,D104,D107,D203,D212"  # Ignore common issues (adjust as needed)
 match-dir = "^src$"  # Only check src/ dir
+
+[project.scripts]
+autodocstring = "autodocstring.cli:main"

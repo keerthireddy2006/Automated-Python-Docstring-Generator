@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: autodocstring-tool
+Version: 0.1.0
+Summary: Automated Python docstring generator and enforcer
+Requires-Python: >=3.9
+License-File: LICENSE
+Requires-Dist: streamlit
+Requires-Dist: pandas
+Requires-Dist: pydocstyle
+Dynamic: license-file

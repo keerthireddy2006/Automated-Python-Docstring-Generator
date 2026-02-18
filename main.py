@@ -1,7 +1,7 @@
 import argparse
-from src.parser import parse_file
-from src.generator import generate_docstring
-from src.coverage import coverage_report
+from autodocstring.parser import parse_file
+from autodocstring.generator import generate_docstring
+from autodocstring.coverage import coverage_report
 
 
 def main():
