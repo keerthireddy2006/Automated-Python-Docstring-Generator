@@ -1,30 +1,124 @@
-# Automated Python Docstring Generator
 
-A powerful tool to **automatically generate docstrings**, analyze documentation coverage, enforce PEP-257 compliance, and apply fixes — built for Python developers and teams.
+Automated Python Docstring Generator
+Python
+License: MIT
+pre-commit
+Streamlit App
 
-### Milestones Achieved
+A complete, pip-installable tool that automatically generates docstrings, analyzes coverage, enforces PEP-257 compliance, and offers an interactive UI + CLI.
 
-- **Milestone 1**: AST-based parsing → identify functions/classes, extract params/returns, generate baseline docstrings, coverage report
-- **Milestone 2**: Multi-style generation (Google, NumPy, reST) + compliance checks (PEP-257 via pydocstyle)
-- **Milestone 3**: Streamlit UI with interactive upload, preview, generation, and apply functionality
-- **Milestone 4**: Pip-installable package, robust edge-case tests, UI polish (search, filters, tooltips), CLI entry point, full documentation
+Built during Infosys Springboard Internship — Milestone 4 fully completed.
 
-## Features
+✨ Features
+AST-based parsing of functions, classes, parameters, returns, and type hints
+Generate docstrings in Google, NumPy, or reST style
+Detailed coverage reports (percentage, missing sections, non-compliant items)
+PEP-257 compliance checking with pydocstyle
+Beautiful Streamlit UI with:
+File upload & source preview
+Search by name (case-insensitive)
+Filter "Show only missing docstrings"
+Tooltips on style selector
+One-click generate & apply docstrings
+Download updated code & reports (CSV, Python file)
+Robust CLI for batch processing folders or single files
+Edge-case tested (empty files, syntax errors, no docstrings)
+Pre-commit hooks for code quality (black, whitespace, yaml)
+GitHub Actions CI pipeline
+🚀 Installation
+# Clone the repository
+git clone https://github.com/keerthireddy2006/Automated-Python-Docstring-Generator.git
+cd Automated-Python-Docstring-Generator
 
-- Parses Python code with AST
-- Generates docstrings in **Google**, **NumPy**, or **reST** style
-- Coverage analysis (documented/missing percentage, missing sections)
-- PEP-257 compliance checking
-- Interactive **Streamlit UI** with search, missing-only filter, and auto-apply
-- Batch CLI for folders/files
-- Robust tests for edge cases (empty files, syntax errors, etc.)
-
-## Installation
-
-```bash
-# Clone the repo
-git clone https://github.com/your-username/Auto_Docstring_Generator.git
-cd Auto_Docstring_Generator
-
-# Install in editable mode (recommended for development)
+# Install in editable mode (recommended for development & demo)
 pip install -e .
+Quick Usage
+1. Interactive UI (best for demonstration)
+streamlit run app.py
+What you can do in the UI:
+
+Upload any Python (.py) file
+See source code preview
+View all functions & classes with existing/generated docstrings
+Search by name (e.g. "add")
+Check "Show only missing docstrings"
+Generate docstrings in chosen style
+Apply changes with one button
+Download the updated file
+2. Command-Line Interface (CLI)
+# Single file
+autodocstring calculator.py --style Google --verbose
+
+# Check entire folder
+autodocstring samples/ --min-coverage 80 --verbose
+
+# Run directly without install
+python src/autodocstring/cli.py math.py --style NumPy
+CLI Flags
+
+--style {Google, NumPy, reST} — default: Google
+--min-coverage float — fail if any file below this (default: 80.0)
+--verbose — detailed per-file output
+3. Run Tests
+pytest -v
+All tests pass (CLI behavior, empty files, syntax errors, coverage checks).
+
+📸 Screenshots
+Streamlit UI – Main Dashboard
+![Main UI](Screenshot 2026-02-19 205623.png)
+
+UI – Search Example
+![Search UI](Screenshot 2026-02-19 205649.png)
+
+UI – Missing Docstrings Filter
+![Missing Filter](Screenshot 2026-02-19 205819.png)
+
+UI – Coverage View
+![Coverage UI](Screenshot 2026-02-19 205838.png)
+
+UI – Apply Docstrings
+![Apply UI](Screenshot 2026-02-19 205854.png)
+
+CLI – Verbose Output
+CLI Output
+
+Project Structure
+Automated-Python-Docstring-Generator/
+├── src/
+│   └── autodocstring/
+│       ├── __init__.py
+│       ├── __main__.py
+│       ├── cli.py          # Command-line interface
+│       ├── parser.py       # AST parsing
+│       ├── generator.py    # Docstring generation
+│       ├── coverage.py     # Coverage analysis
+│       ├── compliance.py   # PEP-257 compliance
+│       ├── injector.py     # Apply docstrings
+│       └── ...             # other modules
+├── app.py                  # Streamlit UI
+├── tests/                  # Pytest suite
+├── samples/                # Example Python files
+├── .github/workflows/      # CI pipeline
+├── .pre-commit-config.yaml # Code quality hooks
+├── pyproject.toml
+└── README.md
+Development & Tools Used
+Python 3.9+
+AST for parsing
+pydocstyle for PEP-257
+Streamlit for UI
+pytest for testing
+pre-commit + black for style
+GitHub Actions for CI
+Final Milestone 4 Status
+Pip-installable package → Done
+Robust tests for edge cases → Done
+Improved Streamlit UI (search, filters, tooltips) → Done
+Published documentation & usage guides → Done
+Project fully complete, tested, documented, and pushed to GitHub.
+
+Thank you for reviewing — Infosys Springboard Internship.
+
+Built with passion by Nkeerthi.
+
+Ready for feedback & future work (LLM integration, auto-fixing, etc.)!
