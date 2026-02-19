@@ -36,44 +36,22 @@ cd Automated-Python-Docstring-Generator
 
 # Install in editable mode (recommended for development & demo)
 pip install -e .
-Quick Usage
-1. Interactive UI (best for demonstration)
+
+Usage
+UI
 Bashstreamlit run app.py
-What you can do in the UI:
-
-Upload any Python (.py) file
-See source code preview
-View all functions & classes with existing/generated docstrings
-Search by name (e.g. "add")
-Check "Show only missing docstrings"
-Generate docstrings in chosen style
-Apply changes with one button
-Download the updated file
-
-2. Command-Line Interface (CLI)
-Bash# Single file
-autodocstring calculator.py --style Google --verbose
-
-# Check entire folder
+Upload file → search → filter missing → apply docstrings.
+CLI
+Bashautodocstring calculator.py --style Google --verbose
 autodocstring samples/ --min-coverage 80 --verbose
-
-# Run directly without install
-python src/autodocstring/cli.py math.py --style NumPy
-CLI Flags
-
---style {Google, NumPy, reST} — default: Google
---min-coverage float — fail if any file below this (default: 80.0)
---verbose — detailed per-file output
-
-3. Run Tests
+Tests
 Bashpytest -v
-All tests pass (CLI behavior, empty files, syntax errors, coverage checks).
-📸 Screenshots
-Streamlit UI – Main Dashboard
+Screenshots
+UI – Main Dashboard
 ![Main UI](Screenshot 2026-02-19 205623.png)
 UI – Search Example
 ![Search UI](Screenshot 2026-02-19 205649.png)
-UI – Missing Docstrings Filter
+UI – Missing Filter
 ![Missing Filter](Screenshot 2026-02-19 205819.png)
 UI – Coverage View
 ![Coverage UI](Screenshot 2026-02-19 205838.png)
@@ -87,38 +65,26 @@ textAutomated-Python-Docstring-Generator/
 │   └── autodocstring/
 │       ├── __init__.py
 │       ├── __main__.py
-│       ├── cli.py          # Command-line interface
-│       ├── parser.py       # AST parsing
-│       ├── generator.py    # Docstring generation
-│       ├── coverage.py     # Coverage analysis
-│       ├── compliance.py   # PEP-257 compliance
-│       ├── injector.py     # Apply docstrings
-│       └── ...             # other modules
-├── app.py                  # Streamlit UI
-├── tests/                  # Pytest suite
-├── samples/                # Example Python files
-├── .github/workflows/      # CI pipeline
-├── .pre-commit-config.yaml # Code quality hooks
+│       ├── cli.py
+│       ├── parser.py
+│       ├── generator.py
+│       ├── coverage.py
+│       ├── compliance.py
+│       ├── injector.py
+│       └── ...
+├── app.py
+├── tests/
+├── samples/
+├── .github/workflows/
+├── .pre-commit-config.yaml
 ├── pyproject.toml
 └── README.md
-Development & Tools Used
-
-Python 3.9+
-AST for parsing
-pydocstyle for PEP-257
-Streamlit for UI
-pytest for testing
-pre-commit + black for style
-GitHub Actions for CI
-
-Final Milestone 4 Status
+Milestone 4 Status
 
 Pip-installable package → Done
-Robust tests for edge cases → Done
-Improved Streamlit UI (search, filters, tooltips) → Done
-Published documentation & usage guides → Done
+Robust tests → Done
+UI improvements → Done
+Documentation & guides → Done
 
-Project fully complete, tested, documented, and pushed to GitHub.
-Thank you for reviewing — Infosys Springboard Internship.
-Built with passion by Nkeerthi.
-Ready for feedback & future work (LLM integration, auto-fixing, etc.)!
+Thank you!
+Nkeerthi
