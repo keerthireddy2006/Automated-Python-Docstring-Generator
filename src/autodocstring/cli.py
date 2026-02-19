@@ -71,7 +71,7 @@ def main():
                 )
             else:
                 if args.verbose:
-                    print(f"  {file_path}: {coverage_pct:.2f}% ✓ OK")
+                    print(f"  {file_path}: {coverage_pct:.2f}%  OK")
 
         except Exception as e:
             print(f"Error processing {file_path}: {type(e).__name__}: {str(e)}")

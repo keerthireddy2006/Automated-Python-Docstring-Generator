@@ -20,10 +20,11 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install -e . pre-commit pydocstyle interrogate pandas streamlit  # Your deps
+          pip install -e . pre-commit pydocstyle interrogate pandas streamlit
 
       - name: Run pre-commit hooks
         run: pre-commit run --all-files
 
       - name: Custom docstring coverage check
-        run: python -m src.cli src --min-coverage=80 --verbose
+        run: python -m autodocstring.cli samples/ --min-coverage=80 --verbose
+        # Optional: change to your source folder if needed, e.g. src/autodocstring/
