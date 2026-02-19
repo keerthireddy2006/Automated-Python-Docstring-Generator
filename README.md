@@ -48,7 +48,7 @@ Tests
 Bashpytest -v
 Screenshots
 UI – Main Dashboard
-![Main UI](Screenshot 2026-02-19 205623.png)
+![Main UI](ui_main.png)
 UI – Search Example
 ![Search UI](Screenshot 2026-02-19 205649.png)
 UI – Missing Filter
