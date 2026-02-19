@@ -5,13 +5,13 @@
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](.pre-commit-config.yaml)
 [![Streamlit App](https://img.shields.io/badge/Streamlit-App-orange?logo=streamlit&logoColor=white)](https://streamlit.io/)
 
-**A complete, pip-installable tool** that automatically generates docstrings, analyzes coverage, enforces PEP-257 compliance, and offers an interactive UI + CLI.
+**A powerful, pip-installable tool** that automatically generates docstrings, analyzes documentation coverage, enforces PEP-257 compliance, and provides an interactive UI.
 
 Built during **Infosys Springboard Internship** — **Milestone 4 fully completed**.
 
 ## ✨ Features
 
-- AST-based parsing of functions, classes, parameters, returns, and type hints
+- AST-powered parsing of functions, classes, parameters, returns, and type hints
 - Generate docstrings in **Google**, **NumPy**, or **reST** style
 - Detailed coverage reports (percentage, missing sections, non-compliant items)
 - PEP-257 compliance checking with pydocstyle
@@ -80,7 +80,7 @@ UI – Coverage View
 UI – Apply Docstrings
 ![Apply UI](Screenshot 2026-02-19 205854.png)
 CLI – Verbose Output
-CLI Output
+![CLI Output](Screenshot 2026-02-19 210121.png)
 Project Structure
 textAutomated-Python-Docstring-Generator/
 ├── src/
