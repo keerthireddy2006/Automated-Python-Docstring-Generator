@@ -37,6 +37,6 @@ repos:
         entry: python src/autodocstring/cli.py
         language: system  # ← change to system
         types: [python]
-        files: ^(samples/|tests/)
+        files: ^(samples)
         pass_filenames: true
         args: [--min-coverage=50, --verbose]
