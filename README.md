@@ -7,84 +7,177 @@
 
 **A powerful, pip-installable tool** that automatically generates docstrings, analyzes documentation coverage, enforces PEP-257 compliance, and provides an interactive UI.
 
-Built during **Infosys Springboard Internship** — **Milestone 4 fully completed**.
+```markdown
+## Publish Documentation & Usage Guides
 
-## ✨ Features
+The **Automated Python Docstring Generator** is fully documented, production-ready, and built to be **developer-first** — simple to install, powerful to use, and open for contributions.
 
-- AST-powered parsing of functions, classes, parameters, returns, and type hints
-- Generate docstrings in **Google**, **NumPy**, or **reST** style
-- Detailed coverage reports (percentage, missing sections, non-compliant items)
-- PEP-257 compliance checking with pydocstyle
-- **Beautiful Streamlit UI** with:
-  - File upload & source preview
-  - Search by name (case-insensitive)
-  - Filter "Show only missing docstrings"
-  - Tooltips on style selector
-  - One-click generate & apply docstrings
-  - Download updated code & reports (CSV, Python file)
-- Robust CLI for batch processing folders or single files
-- Edge-case tested (empty files, syntax errors, no docstrings)
-- Pre-commit hooks for code quality (black, whitespace, yaml)
-- GitHub Actions CI pipeline
+This section is your **complete guide** — from installation to advanced workflows.
 
-## 🚀 Installation
+### 1. Installation
+
+#### Option A: Quick Install from PyPI (recommended)
 
 ```bash
-# Clone the repository
+pip install autodocstring-tool==0.1.0
+```
+
+#### Option B: Direct from GitHub Release
+
+```bash
+pip install https://github.com/keerthireddy2006/Automated-Python-Docstring-Generator/releases/download/v0.1.0/autodocstring_tool-0.1.0-py3-none-any.whl
+```
+
+#### Option C: Development / Editable Install
+
+```bash
 git clone https://github.com/keerthireddy2006/Automated-Python-Docstring-Generator.git
 cd Automated-Python-Docstring-Generator
-
-# Install in editable mode (recommended for development & demo)
 pip install -e .
+```
 
-Usage
-UI
-Bashstreamlit run app.py
-Upload file → search → filter missing → apply docstrings.
-CLI
-Bashautodocstring calculator.py --style Google --verbose
-autodocstring samples/ --min-coverage 80 --verbose
-Tests
-Bashpytest -v
-Screenshots
-UI – Main Dashboard
-![Main UI](ui_main.png)
-UI – Search Example
-![Search UI](Screenshot 2026-02-19 205649.png)
-UI – Missing Filter
-![Missing Filter](Screenshot 2026-02-19 205819.png)
-UI – Coverage View
-![Coverage UI](Screenshot 2026-02-19 205838.png)
-UI – Apply Docstrings
-![Apply UI](Screenshot 2026-02-19 205854.png)
-CLI – Verbose Output
-![CLI Output](Screenshot 2026-02-19 210121.png)
-Project Structure
-textAutomated-Python-Docstring-Generator/
-├── src/
-│   └── autodocstring/
-│       ├── __init__.py
-│       ├── __main__.py
-│       ├── cli.py
-│       ├── parser.py
-│       ├── generator.py
-│       ├── coverage.py
-│       ├── compliance.py
-│       ├── injector.py
-│       └── ...
-├── app.py
-├── tests/
-├── samples/
-├── .github/workflows/
-├── .pre-commit-config.yaml
-├── pyproject.toml
-└── README.md
-Milestone 4 Status
+**Quick check after install**
 
-Pip-installable package → Done
-Robust tests → Done
-UI improvements → Done
-Documentation & guides → Done
+```bash
+autodocstring --help
+streamlit run app.py   # opens interactive UI
+```
 
-Thank you!
-Nkeerthi
+### 2. CLI Usage Examples
+
+**Coverage check**
+
+```bash
+# Single file
+autodocstring calculator.py --style Google --verbose
+
+# Entire folder
+autodocstring src/ --min-coverage 85 --verbose
+```
+
+**Generate & apply docstrings**
+
+```bash
+# Single file
+autodocstring math_utils.py --style NumPy --apply --verbose
+
+# Batch apply
+autodocstring legacy/ --style reST --apply --verbose
+```
+
+**Run directly (no install needed)**
+
+```bash
+python src/autodocstring/cli.py samples/ --style Google --min-coverage 90 --apply
+```
+
+**CLI Flags Overview**
+
+| Flag               | Description                                      | Default   | Example                     |
+|--------------------|--------------------------------------------------|-----------|-----------------------------|
+| `--style`          | Docstring style                                  | Google    | `--style NumPy`             |
+| `--min-coverage`   | Fail if any file below this %                    | 80.0      | `--min-coverage 90`         |
+| `--verbose`        | Detailed per-file output                         | False     | `--verbose`                 |
+| `--apply`          | Generate and inject docstrings                   | False     | `--apply`                   |
+
+### 3. Configuration Guide
+
+Configuration is currently **flag-based** (no separate config file yet — planned for v0.2).
+
+**Recommended defaults for teams**
+
+- Style: Google (most readable)
+- Min coverage: 85–90% (quality gate)
+- Verbose: always in CI/CD
+
+**Future environment variables** (planned)
+
+```bash
+export AUTODOC_DEFAULT_STYLE="NumPy"
+export AUTODOC_MIN_COVERAGE=90
+```
+
+### 4. Contribution Guidelines
+
+We welcome contributions — bug fixes, features, docs, or ideas!
+
+**How to Contribute**
+
+1. Fork the repository
+2. Create your branch: `git checkout -b feature/your-feature`
+3. Commit: `git commit -m 'Add your-feature-name'`
+4. Push: `git push origin feature/your-feature`
+5. Open a Pull Request with clear title & description
+
+**Coding Standards** (enforced via pre-commit)
+
+- Black formatting
+- PEP-257 compliant docstrings
+- Pytest coverage > 85%
+- Descriptive commit messages
+- No linting errors
+
+**Reporting Issues**
+
+- Use GitHub Issues
+- Include: steps to reproduce, expected vs actual, screenshots, Python version
+
+**Roadmap Ideas** (open for contributions)
+
+- VS Code / PyCharm extension
+- LLM auto-fix suggestions
+- Coverage badge in README
+- PDF/CSV report export
+- Multi-language support
+
+### 5. Example Workflows
+
+**Quick single-file fix**
+
+```bash
+autodocstring my_module.py --verbose
+autodocstring my_module.py --style Google --apply
+```
+
+**Enforce team standards in CI**
+
+Add to `.github/workflows/ci.yml`:
+
+```yaml
+- name: Enforce docstring coverage
+  run: autodocstring src/ --min-coverage 90
+```
+
+**Interactive session (UI)**
+
+```bash
+streamlit run app.py
+# Upload → search missing → generate → apply → download
+```
+
+**Modernize legacy codebase**
+
+```bash
+autodocstring legacy_project/ --style NumPy --apply --verbose > coverage_report.txt
+```
+
+**Development & testing cycle**
+
+```bash
+pip install -e .
+pytest -v
+streamlit run app.py
+```
+
+### Final Note
+
+Built with passion during the Infosys Springboard Internship.  
+Open-source, pip-installable, well-tested, and ready for real developers.
+
+**Thank you** for reading!  
+We welcome feedback, stars, forks, and contributions.
+
+Nkeerthi  
+[GitHub Repository](https://github.com/keerthireddy2006/Automated-Python-Docstring-Generator)  
+[Report Issues](https://github.com/keerthireddy2006/Automated-Python-Docstring-Generator/issues)
+```
