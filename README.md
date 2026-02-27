@@ -171,13 +171,13 @@ streamlit run app.py
 
 ### Final Note
 
-Built with passion during the Infosys Springboard Internship.  
+Built with passion during the Infosys Springboard Internship.
 Open-source, pip-installable, well-tested, and ready for real developers.
 
-**Thank you** for reading!  
+**Thank you** for reading!
 We welcome feedback, stars, forks, and contributions.
 
-Nkeerthi  
-[GitHub Repository](https://github.com/keerthireddy2006/Automated-Python-Docstring-Generator)  
+Nkeerthi
+[GitHub Repository](https://github.com/keerthireddy2006/Automated-Python-Docstring-Generator)
 [Report Issues](https://github.com/keerthireddy2006/Automated-Python-Docstring-Generator/issues)
 ```
